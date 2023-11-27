@@ -1,3 +1,18 @@
+# rails db:drop
+# update credentials ("developer")
+
+# - CREATE USER developer WITH PASSWORD 'developer' CREATEDB;
+# - ALTER USER developer CREATEDB;
+# - SELECT pg_reload_conf();
+# close command prompt
+
+# rails db:create
+# rails db:migrate
+
+# Test for the application to run
+#
+# - GRANT ALL PRIVILEGES ON DATABASE recipe_app_development TO developer;
+
 # PostgreSQL. Versions 9.3 and up are supported.
 #
 # Install the pg driver:
