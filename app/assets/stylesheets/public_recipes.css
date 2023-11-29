@@ -1,0 +1,26 @@
+h1 {
+  text-align: center;
+}
+
+.mrgn {
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+.border {
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
+
+.recipe_lmnt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe_info {
+  margin-left: 25px;
+}
+
+.recipe_data {
+  margin-right: 100px;
+}
