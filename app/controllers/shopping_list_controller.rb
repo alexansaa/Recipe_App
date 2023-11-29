@@ -2,8 +2,13 @@ class ShoppingListController < ApplicationController
   # before_action :authenticate_user!
 
   def index
-    # @user = current_user
-    # @missing_foods = calculate_missing_foods(@user)
+    @recipe = Recipe.find(params[:recipe_id])
+    @inventory = Inventory.find(params[:inventory_id])
+
+    recipe_food_items = @recipe.recipe_foods.map(&:food)
+    inventory_food_items = @inventory.recipe_foods.map(&:food)
+
+    @missing_food_items = recipe_food_items - inventory_food_items
   end
 
   private
