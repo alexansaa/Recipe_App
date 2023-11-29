@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
 =======
   # Users routes
-  resources :recipes, only: [:index, :show]
+  resources :recipes, only: [:index, :show, :destroy]
 
   resources :public_recipes, only: [:index]
 >>>>>>> 40f60c7 (redirecting to detailed recipe)
