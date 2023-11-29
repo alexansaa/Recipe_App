@@ -3,17 +3,15 @@ Rails.application.routes.draw do
   
   root "recipes#index"
   get "up" => "rails/health#show", as: :rails_health_check
-
   resources :inventories, only: [:show] do
     resources :inventory_foods, only: [:destroy, :new, :create]
   end
 
   resources :food, only: [:new]
 
-  get '/inventories', to: 'inventories#index', as: 'inventories'
   get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
   # Users routes
-  resources :recipes, only: [:index, :show, :new, :destroy]
+  resources :recipes, only: [:index, :show, :destroy]
 
   resources :public_recipes, only: [:index]
 
