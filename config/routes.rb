@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
 
+  resources :recipes, only: [:show]
+  resources :inventories, only: [:show]
+
   # Defines the root path route ("/")
   # root "posts#index"
 end
