@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get '/inventories', to: 'inventories#index', as: 'inventories'
   get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
   # Users routes
-  resources :recipes, only: [:index, :show, :new]
+  resources :recipes, only: [:index, :show, :new, :destroy]
+
+  resources :public_recipes, only: [:index]
 
   # Route for displaying public recipes
   get '/public_recipes', to: 'public_recipes#index', as: 'public_recipes'
