@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Users routes
-  resources :recipes, only: [:index, :show]
+  resources :recipes, only: [:index, :show, :destroy]
 
   resources :public_recipes, only: [:index]
 
