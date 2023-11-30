@@ -8,11 +8,12 @@ Rails.application.routes.draw do
     resources :inventory_foods, only: [:destroy, :new, :create]
   end
 
-  resources :recipes, only: [:show, :new]
   resources :food, only: [:new]
 
   get '/inventories', to: 'inventories#index', as: 'inventories'
   get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
+  # Users routes
+  resources :recipes, only: [:index, :show, :new]
 
   # Route for displaying public recipes
   get '/public_recipes', to: 'public_recipes#index', as: 'public_recipes'

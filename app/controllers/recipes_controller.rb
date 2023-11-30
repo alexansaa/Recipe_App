@@ -6,7 +6,9 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
-  def show; end
+  def show
+    @recipe = params[:id]
+  end
 
   def new
     @recipe = Recipe.new

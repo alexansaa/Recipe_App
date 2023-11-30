@@ -1,0 +1,20 @@
+<%= link_to recipe_path(recipe) do %>
+  <div class="border mrgn recipe_lmnt">
+    <div class="recipe_info">
+      <h2>
+        <%= recipe.name %>
+      </h2>
+      <p>
+        By: <%= recipe.user.name %>
+      </p>
+    </div>
+    <div class="recipe_data">
+      <p>
+        Total food items: <%= recipe.recipe_foods.sum(:quantity) %>
+      </p>
+      <p>
+        Total price: $<%= recipe.recipe_foods.joins(:food).sum('recipe_foods.quantity * foods.price') %>
+      </p>
+    </div>
+  </div>
+<% end %>
