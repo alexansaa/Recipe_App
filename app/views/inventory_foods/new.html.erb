@@ -1,0 +1,17 @@
+<div>
+  <%= form_with model: [@inventory, @inventory_food], url: inventory_path(@inventory.id), method: :post, local: false, scope: :post do |f| %>
+    <div>
+      <%= f.label :food_id, 'Food:' %>
+      <%= f.collection_select(:food_id, @food, :id, :name, prompt: 'Select Food') %>
+    </div>
+
+    <div>
+      <%= f.label :quantity, 'Quantity:' %>
+      <%= f.number_field :quantity %>
+    </div>
+
+    <div>
+      <%= f.submit 'Submit' %>
+    </div>
+  <% end %>
+</div>
