@@ -7,7 +7,7 @@
       <%= @inventory.name %>
     </h1>
     <div class="btn_element">
-      <%= link_to 'Add food', new_inventory_food_path(id: @inventory.id), class: 'btn' %>
+      <%= link_to 'Add food', new_inventory_inventory_food_path(inventory_id: @inventory.id), class: 'btn' %>
     </div>
   </div>
   <div class="mrgn">
@@ -20,11 +20,11 @@
         </tr>
       </thead>
       <tbody>
-        <% @inventory.inventory_foods.each do |item| %>
+        <% @inventory.inventory_foods.each_with_index do |item, index| %>
           <tr class="<%= index.even? ? 'even' : 'odd' %>">
             <td><%= Food.find(item.food_id).name %></td>
             <td><%= item.quantity %></td>
-            <td><%= link_to 'Remove', inventory_food_path(item), method: :delete, remote: true %></td>
+            <td><%= link_to 'Remove', inventory_inventory_food_path(inventory_id: @inventory.id, id: item.id), method: :delete, remote: true %></td>
           </tr>
         <% end %>
       </tbody>
