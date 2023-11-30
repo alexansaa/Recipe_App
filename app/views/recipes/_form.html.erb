@@ -17,12 +17,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :preparation_time %>
+    <%= form.label :preparation_time, "Preparation Time (minutes)" %>
     <%= form.number_field :preparation_time, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :cooking_time %>
+    <%= form.label :cooking_time, "Cooking Time (minutes)" %>
     <%= form.number_field :cooking_time, class: 'form-control' %>
   </div>
 
@@ -37,6 +37,6 @@
   </div>
 
   <div class="actions btn-submit">
-    <%= form.submit%>
+    <%= form.submit %>
   </div>
 <% end %>
