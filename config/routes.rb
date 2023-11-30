@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :food, only: [:new]
+  resources :recipes, only: [:show]
+
+  get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
 
   # Defines the root path route ("/")
   # root "posts#index"

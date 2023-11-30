@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+}
+
+.shopping_list_data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mrgn {
+  margin-left: 45px;
+  margin-right: 45px;
+}

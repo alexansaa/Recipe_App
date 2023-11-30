@@ -2,9 +2,10 @@
   <%= stylesheet_link_tag "inventory_details" %>
 </head>
 <body>
-  <div class="inventory_info mrgn">
+  <div class="inventory_info mrgn container">
     <h1>
       <%= @inventory.name %>
+      <%= link_to 'Back to Inventories', inventories_path %>
     </h1>
     <div class="btn_element">
       <%= link_to 'Add food', new_inventory_inventory_food_path(inventory_id: @inventory.id), class: 'btn' %>
@@ -31,4 +32,3 @@
     </table>
   </div>
 </body>
-
