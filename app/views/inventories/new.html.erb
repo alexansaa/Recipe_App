@@ -1,5 +1,7 @@
-
 <div class="container">
-  <h1><%= @inventory.name %></h1>
+  <h1 class="head-1">New Inventory</h1>
+
+  <%= render 'form', inventory: @inventory %>
+
   <%= link_to 'Back to Inventories', inventories_path %>
 </div>
