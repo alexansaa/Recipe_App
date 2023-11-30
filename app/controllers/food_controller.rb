@@ -1,5 +1,3 @@
 class FoodController < ApplicationController
-  def new
-    
-  end
+  def new; end
 end

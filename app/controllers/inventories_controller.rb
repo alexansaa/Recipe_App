@@ -1,5 +1,4 @@
 class InventoriesController < ApplicationController
-
   before_action :set_inventory, only: %i[show destroy]
 
   def index

@@ -1,10 +1,8 @@
 class InventoryFoodsController < ApplicationController
-
   def new
     @inventory = Inventory.find(params[:inventory_id])
     @food = Food.all
     @inventory_food = InventoryFood.new
-
   end
 
   def create
@@ -27,7 +25,7 @@ class InventoryFoodsController < ApplicationController
   def destroy
     @inventory_food = InventoryFood.find(params[:id])
     @inventory = Inventory.find(@inventory_food.inventory_id)
-  
+
     respond_to do |format|
       if @inventory_food.destroy
         flash[:success] = 'Inventory Food deleted succesfully'
@@ -35,7 +33,7 @@ class InventoryFoodsController < ApplicationController
         flash.now[:error] = 'Error: Inventory Food could not be deleted'
         flash.now[:error_details] = @inventory_food.error.full_messages.join(', ')
       end
-      format.js { render js: "window.location = '#{inventory_path(id: @inventory.id )}'" }
+      format.js { render js: "window.location = '#{inventory_path(id: @inventory.id)}'" }
     end
   end
 end

@@ -29,7 +29,8 @@
   border-collapse: collapse;
 }
 
-.items_table th, .items_table td {
+.items_table th,
+.items_table td {
   border: 1px solid black;
   padding: 8px;
 }
