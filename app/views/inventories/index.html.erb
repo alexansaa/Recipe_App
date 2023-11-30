@@ -1,0 +1,25 @@
+<head>
+  <%= stylesheet_link_tag "inventory" %>
+</head>
+<body>
+  <div class="container">
+    <h1 class="head-1">List of Inventories</h1>
+
+    <ul class="inventory-list">
+      <% @inventories.each do |inventory| %>
+        <li class="inventory-item">
+          <div class="inventory-header">
+            <h3><%= link_to inventory.name, inventory %></h3>
+          </div>
+          <%= button_to 'Remove', inventory_path(inventory), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete' %>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if @inventories.empty? %>
+      <p class="inventory-empty">There are no inventories.</p>
+    <% end %>
+
+    <%= link_to 'New Inventory', new_inventory_path, class: 'new-inventory-button' %>
+  </div>
+</body>
