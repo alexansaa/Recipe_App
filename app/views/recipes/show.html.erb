@@ -1,13 +1,1 @@
-<h1><%= @recipe.name %></h1>
 
-<p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
-<p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
-<p>Description: <%= @recipe.description %></p>
-
-<% if @recipe.public %>
-  <p>This recipe is public</p>
-<% else %>
-  <p>This recipe is private</p>
-<% end %>
-
-<%= link_to 'Back to Recipes', recipes_path %>

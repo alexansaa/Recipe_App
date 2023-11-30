@@ -5,11 +5,15 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :recipes
-  get '/inventories', to: 'inventories#index', as: 'inventories'
+  resources :inventories, only: [:show] do
+    resources :inventory_foods, only: [:destroy, :new, :create]
+  end
 
-  # Route for displaying foods
-  get '/foods', to: 'foods#index', as: 'foods'
+  resources :food, only: [:new]
+  resources :recipes, only: [:show]
+
+  get '/inventories', to: 'inventories#index', as: 'inventories'
+  get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
 
   # Route for displaying public recipes
   get '/public_recipes', to: 'public_recipes#index', as: 'public_recipes'
