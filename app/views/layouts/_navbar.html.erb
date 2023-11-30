@@ -1,0 +1,17 @@
+<head>
+  <%= stylesheet_link_tag "navbar" %>
+</head>
+<body>
+  <div class="navBar">
+    <div class="logo">
+      <%= link_to '/' do %>
+        <%= image_tag 'my-recipes-logo.png', alt: 'Logo', class: 'logo-img' %>
+      <% end %>
+    </div>
+    <%= link_to 'Recipes', recipes_path, class: 'navbar-link' %>
+    <%= link_to 'Inventories', inventories_path, class: 'navbar-link' %>
+    <%= link_to 'Public recipes', public_recipes_path, class: 'navbar-link' %>
+    <%= link_to 'Edit profile', edit_user_registration_path, class: 'navbar-link' %>
+    <%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'logout') %>
+  </div>
+</body>
