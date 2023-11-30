@@ -1,0 +1,27 @@
+<head>
+  <%= stylesheet_link_tag "recipe" %>
+</head>
+<body>
+  <div class="container">
+    <h1 class="head-1">List of Recipes</h1>
+
+    <ul class="recipe-list">
+      <% @recipes.each do |recipe| %>
+        <li class="recipe-item">
+          <div class="recipe-header">
+            <h3><%= link_to recipe.name, recipe %></h3>
+            <p><%= recipe.description %></p>
+          </div>
+          <%= button_to 'Remove', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete'%>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if @recipes.empty? %>
+        <p class="recipe-empty">There are no recipes.</p>
+    <% end %>
+
+
+    <%= link_to 'New Recipe', new_recipe_path, class: 'new-recipe-button' %>
+    </div>
+</body>
