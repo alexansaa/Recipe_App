@@ -12,8 +12,17 @@ Rails.application.routes.draw do
   resources :food, only: [:new]
   resources :recipes, only: [:show]
 
+  get '/inventories', to: 'inventories#index', as: 'inventories'
   get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
 
+  # Route for displaying public recipes
+  get '/public_recipes', to: 'public_recipes#index', as: 'public_recipes'
+
+  # Route for editing user profile
+  get '/edit_user_registration', to: 'users#edit', as: 'edit_user_registration'
+
+  # Route for destroying user session (logging out)
+  delete '/destroy_user_session', to: 'sessions#destroy', as: 'destroy_user_session'
   # Defines the root path route ("/")
   # root "posts#index"
 end
