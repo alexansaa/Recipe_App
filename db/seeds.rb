@@ -1,18 +1,8 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
 # db/seeds.rb
 
 # Helper method to create a user with inventories, foods, recipes, etc.
-def create_user_with_data(name)
-  user = User.create!(name: name)
+def create_user_with_data(name, email, password)
+  user = User.create!(name: name, email: email, password: password)
 
   # Create inventories
   inventory1 = Inventory.create!(name: "Inventory 1", user: user)
@@ -36,8 +26,7 @@ def create_user_with_data(name)
 end
 
 # Seed data
-create_user_with_data("John Doe")
-create_user_with_data("Jane Gates")
+create_user_with_data("John Doe", "john@example.com", "password123")
+create_user_with_data("Jane Gates", "jane@example.com", "password456")
 
 puts "Seed data successfully created!"
-
