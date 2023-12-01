@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_recipe, only: %i[show destroy]
 
@@ -6,7 +7,9 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
-  def show; end
+  def show
+    @recipe = params[:id]
+  end
 
   def new
     @recipe = Recipe.new
