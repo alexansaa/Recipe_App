@@ -1,14 +1,19 @@
 class RecipesController < ApplicationController
   load_and_authorize_resource
-  before_action :authenticate_user!
-  before_action :set_recipe, only: %i[show destroy]
+  before_action :authenticate_user!, except: [:show]
+  before_action :set_recipe, only: [:show, :destroy]
 
   def index
     @recipes = Recipe.all
   end
 
   def show
-    @recipe = params[:id]
+    unless @recipe.public || @recipe.owner?(current_user)
+      redirect_to root_path, alert: 'Recipe is private.'
+      return
+    end
+
+    @new_food = Food.new if @recipe.owner?(current_user)
   end
 
   def new
@@ -16,7 +21,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = current_user.recipes.build(recipe_params)
+    @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
       redirect_to @recipe, notice: 'Recipe was successfully created.'
     else
@@ -25,10 +30,11 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     @recipe.destroy
-
     redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
+  end
+
+  def update
   end
 
   private

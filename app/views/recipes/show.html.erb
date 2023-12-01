@@ -1,3 +1,40 @@
-<div>
-  This is the details page of my Recipe <%= @recipe %>!
-</div>
+<h1><%= @recipe.name %></h1>
+<p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
+<p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
+<p>Description: <%= @recipe.description %></p>
+
+<% if @recipe.owner?(current_user) %>
+  <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
+    <%= f.check_box :public %>
+    <%= f.label :public, 'Make Public' %>
+    <%= f.submit %>
+  <% end %>
+
+  <%= button_to 'Generate Shopping List', shopping_list_path, method: :get %>
+
+  <%= button_to 'Add Ingredient', new_food_path, method: :get %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipe.recipe_foods.each do |recipe_food| %>
+      <tr>
+        <td><%= recipe_food.food.name %></td>
+        <td><%= recipe_food.quantity %></td>
+        <td><%= recipe_food.food.price %></td>
+        <td>
+          <%= link_to 'Edit', edit_recipe_recipe_food_path(recipe_food) %>
+          <%= link_to 'Delete', recipe_recipe_food_path(recipe_food), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
