@@ -31,7 +31,7 @@
         <td><%= recipe_food.quantity %></td>
         <td><%= recipe_food.food.price %></td>
         <td>
-          <%= link_to 'Edit', edit_recipe_recipe_food_path(recipe_food) %>
+          <%= link_to 'Edit', recipe_recipe_food_path(recipe_food) %>
           <%= link_to 'Delete', recipe_recipe_food_path(recipe_food), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
