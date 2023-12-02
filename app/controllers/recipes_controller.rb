@@ -8,8 +8,8 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
-    @recipe_foods = RecipeFood.includes([:food]).where(recipe: @recipe)
+    @recipe = Recipe.includes(:recipe_foods).find(params[:id])
+    @recipe_foods = @recipe.recipe_foods
     @inventories = Inventory.all
     @foods = Food.all
   end
