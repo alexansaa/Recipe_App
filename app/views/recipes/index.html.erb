@@ -12,7 +12,9 @@
             <h3><%= link_to recipe.name, recipe %></h3>
             <p><%= recipe.description %></p>
           </div>
-          <%= button_to 'Remove', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete'%>
+          <% if can? :destroy, recipe %>
+            <%= button_to 'Remove', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete'%>
+          <% end %>
         </li>
       <% end %>
     </ul>

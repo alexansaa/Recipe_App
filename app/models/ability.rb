@@ -5,6 +5,9 @@ class Ability
     user ||= User.new
 
     can :read, Recipe
-    can %i[create update destroy], Recipe, user_id: user.id
+    can [:create], Recipe
+    can [:update, :destroy], Recipe, user_id: user.id
+
+    can [:create, :destroy], RecipeFood, recipe: { user_id: user.id }
   end
 end
