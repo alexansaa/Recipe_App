@@ -46,3 +46,38 @@
 .items_table .even {
   background-color: #f2f2f2; /* Light gray background for even rows */
 }
+
+/* Add this CSS to your stylesheet */
+.inventory-form {
+  max-width: 400px; /* Adjust as needed */
+  margin: 0 auto; /* Center the form */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.select-field,
+.quantity-field {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
