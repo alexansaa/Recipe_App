@@ -91,8 +91,10 @@
   generate.addEventListener('click', () => {
     var selectedInventory = document.getElementById('select-inventory');
     var selectedInventoryId = selectedInventory.value;
-    var shoppingListUrl = "<%= shopping_list_index_path(recipe: @recipe) %>";
-    var modifiedUrl = shoppingListUrl + '?inventory=' + selectedInventoryId;
+    var shoppingListUrl = "<%= shopping_list_path%>";
+    var modifiedUrl = shoppingListUrl + '?inventory_id=' + selectedInventoryId + '&recipe_id=' + <%= @recipe.id %>;
     window.location.href = modifiedUrl;
   });
 </script>
+
+
