@@ -6,8 +6,8 @@ class Ability
 
     can :read, Recipe
     can [:create], Recipe
-    can [:update, :destroy], Recipe, user_id: user.id
+    can %i[update destroy], Recipe, user_id: user.id
 
-    can [:create, :destroy], RecipeFood, recipe: { user_id: user.id }
+    can %i[create destroy], RecipeFood, recipe: { user_id: user.id }
   end
 end
