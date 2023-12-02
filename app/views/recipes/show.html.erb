@@ -1,40 +1,51 @@
-<h1><%= @recipe.name %></h1>
-<p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
-<p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
-<p>Description: <%= @recipe.description %></p>
+<div class="recipe-details">
+  <h1><%= @recipe.name %></h1>
+  <div class="first">
+  <div class="recipe">
+  
+  <p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
+  <p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
+  <p>Description: <%= @recipe.description %></p>
+</div>
+  <% if @recipe.owner?(current_user) %>
+   <div class="public-button">
+  <%= form_for @recipe, url: recipe_path(@recipe), method: :patch, html: { class: 'public-form' } do |f| %>
+    <label class="switch">
+      <%= f.check_box :public %>
+      <span class="slider round"></span>
+    </label>
+    <%# <%= f.submit %> 
+  <% end %>
+</div>
 
-<% if @recipe.owner?(current_user) %>
-  <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
-    <%= f.check_box :public %>
-    <%= f.label :public, 'Make Public' %>
-    <%= f.submit %>
+</div>
+    <div class="action-buttons">
+      <%= button_to 'Generate Shopping List', shopping_list_path, method: :get, class: 'shopping-list-btn' %>
+      <%= button_to 'Add Ingredient', new_food_path, method: :get, class: 'add-ingredient-btn' %>
+    </div>
   <% end %>
 
-  <%= button_to 'Generate Shopping List', shopping_list_path, method: :get %>
-
-  <%= button_to 'Add Ingredient', new_food_path, method: :get %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Food</th>
-      <th>Quantity</th>
-      <th>Value</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @recipe.recipe_foods.each do |recipe_food| %>
+  <table class="recipe-table">
+    <thead>
       <tr>
-        <td><%= recipe_food.food.name %></td>
-        <td><%= recipe_food.quantity %></td>
-        <td><%= recipe_food.food.price %></td>
-        <td>
-          <%= link_to 'Edit', recipe_recipe_food_path(recipe_food) %>
-          <%= link_to 'Delete', recipe_recipe_food_path(recipe_food), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Action</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @recipe.recipe_foods.each do |recipe_food| %>
+        <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %></td>
+          <td><%= recipe_food.food.price %></td>
+          <td>
+            <%= link_to 'Edit', recipe_recipe_food_path(recipe_food), class: 'edit-link' %>
+            <%= link_to 'Delete', recipe_recipe_food_path(recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-link' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
