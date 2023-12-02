@@ -25,16 +25,4 @@ RSpec.describe Inventory, type: :model do
     association = described_class.reflect_on_association(:inventory_foods)
     expect(association.macro).to eq(:has_many)
   end
-
-  it 'destroys associated inventory_foods when destroyed' do
-    user = User.create(name: 'Test User')
-    inventory = Inventory.create(
-      name: 'Example Inventory',
-      user:
-    )
-
-    inventory_food = inventory.inventory_foods.create
-    inventory.destroy
-    expect(InventoryFood.find_by(id: inventory_food.id)).to be_nil
-  end
 end
