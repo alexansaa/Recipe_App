@@ -22,80 +22,81 @@
   </div>
 </div>
 
-</div>
-    <div class="action-buttons">
-     <button class: 'add-ingredient-btn' id="open-modal">Generate shopping list</button>
-      <%= button_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), method: :get, class: 'add-ingredient-btn' %>
-    </div>
-  <% end %>
-
-  <table class="recipe-table">
-    <thead>
-      <tr>
-        <th>Food</th>
-        <th>Quantity</th>
-        <th>Value</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @recipe.recipe_foods.each do |recipe_food| %>
-        <tr>
-          <td><%= recipe_food.food.name %></td>
-          <td><%= recipe_food.quantity %></td>
-          <td><%= recipe_food.food.price %></td>
-          <td>
-            <%= link_to 'Edit', recipe_recipe_food_path(recipe_food), class: 'edit-link' %>
-            <%= link_to 'Delete', recipe_recipe_food_path(recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-link' %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-   <div class="row">
-    <div id="modal" class="modal hidden">
-      <h2 class="center">Generate shopping list</h2>
-      <p class="chooseOne">Choose an inventory to use</p>
-      <div class="selectAndGenerate">
-        <select id="select-inventory">
-          <option value="" disabled>--Select inventory--</option>
-          <% @inventories.each do |inventory| %>
-            <option value= <%= inventory.id %> > <%= inventory.name%> </option>
-          <% end %>
-        </select>
-        <button class="generate">Generate</button>
+      <div class="action-buttons">
+        <button class='add-ingredient-btn' id="open-modal">Generate shopping list</button>
+        <%= button_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), method: :get, class: 'add-ingredient-btn' %>
       </div>
-      <button type="button" id="close-modal">Close</button>
-    </div>
-   <% if can? :manage, @recipe %>
-      <%= link_to 'Add ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'Addingredient' %>
     <% end %>
+
+    <table class="recipe-table">
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Quantity</th>
+          <th>Value</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipe.recipe_foods.each do |recipe_food| %>
+          <tr>
+            <td><%= recipe_food.food.name %></td>
+            <td><%= recipe_food.quantity %></td>
+            <td><%= recipe_food.food.price %></td>
+            <td>
+              <%= link_to 'Edit', recipe_recipe_food_path(recipe_food), class: 'edit-link' %>
+              <%= link_to 'Delete', recipe_recipe_food_path(recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-link' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <div id="modal" class="modal hidden">
+        <h2 class="center">Generate shopping list</h2>
+        <p class="chooseOne">Choose an inventory to use</p>
+        <div class="selectAndGenerate">
+          <select id="select-inventory">
+            <option value="" disabled>--Select inventory--</option>
+            <% @inventories.each do |inventory| %>
+              <option value=<%= inventory.id %>><%= inventory.name %></option>
+            <% end %>
+          </select>
+          <button class="generate">Generate</button>
+        </div>
+        <button type="button" id="close-modal">Close</button>
+      </div>
+
+      <% if can? :manage, @recipe %>
+        <%= link_to 'Add ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'Addingredient' %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<script> 
-  
-var openModalButton = document.getElementById("open-modal");
-var modal = document.getElementById("modal");
+<script>
+  var openModalButton = document.getElementById("open-modal");
+  var modal = document.getElementById("modal");
 
   openModalButton.addEventListener("click", function() {
-    modal.classList.remove('hidden')
+    modal.classList.remove('hidden');
     openModalButton.style.display = "none";
   });
-var closeModalButton = document.getElementById("close-modal");
 
-closeModalButton.addEventListener("click", function() {
-  modal.classList.add('hidden')
-  openModalButton.style.display = "block";
-});
+  var closeModalButton = document.getElementById("close-modal");
 
+  closeModalButton.addEventListener("click", function() {
+    modal.classList.add('hidden');
+    openModalButton.style.display = "block";
+  });
 
-  var generate = document.querySelector('.generate')
+  var generate = document.querySelector('.generate');
   generate.addEventListener('click', () => {
-  var selectedInventory =  document.getElementById('select-inventory')
-  var selectedInventoryId = selectedInventory.value
-  var shoppingListUrl = "<%= shopping_list_index_path(recipe: @recipe) %>";
-  var modifiedUrl = shoppingListUrl + '?inventory=' + selectedInventoryId;
-    window.location.href = modifiedUrl
-  })
-
+    var selectedInventory = document.getElementById('select-inventory');
+    var selectedInventoryId = selectedInventory.value;
+    var shoppingListUrl = "<%= shopping_list_index_path(recipe: @recipe) %>";
+    var modifiedUrl = shoppingListUrl + '?inventory=' + selectedInventoryId;
+    window.location.href = modifiedUrl;
+  });
 </script>

@@ -8,9 +8,11 @@ class ShoppingListController < ApplicationController
       inventory_food_items = @inventory.inventory_foods.map(&:food)
 
       @missing_food_items = recipe_food_items - inventory_food_items
+      @total_food_items = @missing_food_items.sum(&:quantity)
+      @total_price = @missing_food_items.sum { |food| food.price * food.quantity }
     else
       flash[:error] = 'Recipe or inventory not found.'
-      redirect_to root_path 
+      redirect_to root_path
     end
   end
 end
