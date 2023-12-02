@@ -34,15 +34,10 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    if @recipe.update(recipe_params)
-      respond_to do |format|
-        format.html { redirect_to @recipe }
-      end
-    else
-      puts "it's not updated"
-    end
-  end
+    return unless @recipe.update(recipe_params)
 
+    redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.'
+  end
 
   private
 
