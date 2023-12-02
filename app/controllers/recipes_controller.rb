@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   load_and_authorize_resource
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :set_recipe, only: %i[show destroy]
 
   def index
@@ -8,7 +8,10 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = params[:id]
+    @recipe = Recipe.find(params[:id])
+    @recipe_foods = RecipeFood.includes([:food]).where(recipe: @recipe)
+    @inventories = Inventory.all
+    @foods = Food.all
   end
 
   def new
@@ -16,7 +19,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = current_user.recipes.build(recipe_params)
+    @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
       redirect_to @recipe, notice: 'Recipe was successfully created.'
     else
@@ -25,10 +28,15 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     @recipe.destroy
-
     redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    return unless @recipe.update(recipe_params)
+
+    redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.'
   end
 
   private

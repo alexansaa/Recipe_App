@@ -1,0 +1,15 @@
+<%= form_for [@recipe, @recipe_food] do |f| %>
+  <div>
+    <%= f.label :food_id, class: "d-block" %>
+    <%= f.collection_select :food_id, Food.all, :id, :name %>
+  </div>
+  
+  <div>
+    <%= f.label :quantity, class: "d-block" %>
+    <%= f.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
