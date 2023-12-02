@@ -118,6 +118,9 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .action-buttons {
@@ -172,6 +175,20 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  position: relative;
+}
+
+.first-box {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.ingredient-btns {
+  display: flex;
+  gap: 4rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 /* The switch - the box around the slider */
@@ -229,4 +246,24 @@ input:checked + .slider::before {
 
 .hidden {
   display: none;
+}
+
+.row {
+  width: 50%;
+}
+
+.modal {
+  padding: 2rem;
+  border: 2px solid black;
+}
+
+.selectAndGenerate {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 0;
+}
+
+.generate {
+  padding: 5px 10px;
+  cursor: pointer;
 }
