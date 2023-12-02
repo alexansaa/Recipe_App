@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!, except: [:show]
-  before_action :set_recipe, only: [:show, :destroy]
+  before_action :set_recipe, only: %i[show destroy]
 
   def index
     @recipes = Recipe.all

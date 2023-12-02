@@ -13,7 +13,7 @@ class Recipe < ApplicationRecord
   end
 
   def toggle_public!
-    self.public = !self.public
+    self.public = !public
     save
   end
 end
