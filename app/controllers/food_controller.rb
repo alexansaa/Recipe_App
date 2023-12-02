@@ -1,3 +1,38 @@
 class FoodController < ApplicationController
-  def new; end
+  before_action :set_food, only: %i[show edit destroy]
+  before_action :authenticate_user!, only: %i[new create]
+
+  def index
+    @foods = current_user.foods
+  end
+
+  def show; end
+
+  def new
+    @food = current_user.foods.build
+  end
+
+  def create
+    @food = current_user.foods.build(food_params)
+    if @food.save
+      redirect_to @food, notice: 'Food was successfully created.'
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @food.destroy
+    redirect_to foods_path, notice: 'Food was successfully destroyed.'
+  end
+
+  private
+
+  def set_food
+    @food = current_user.foods.find(params[:id])
+  end
+
+  def food_params
+    params.require(:food).permit(:name, :measurement_unit, :price)
+  end
 end

@@ -132,7 +132,8 @@
   align-items: center;
 }
 
-.shopping-list-btn, .add-ingredient-btn {
+.shopping-list-btn,
+.add-ingredient-btn {
   padding: 8px 12px;
   border: none;
   border-radius: 5px;
@@ -142,7 +143,8 @@
   text-align: center;
 }
 
-.shopping-list-btn:hover, .add-ingredient-btn:hover {
+.shopping-list-btn:hover,
+.add-ingredient-btn:hover {
   background-color: #286090;
 }
 
@@ -153,7 +155,8 @@
   margin-top: 20px;
 }
 
-.recipe-table th, .recipe-table td {
+.recipe-table th,
+.recipe-table td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: left;
@@ -166,6 +169,7 @@
 .first {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   padding: 2rem;
 }
@@ -195,8 +199,8 @@
   bottom: 0;
   background-color: #ccc;
   border-radius: 34px;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -208,13 +212,13 @@
   bottom: 4px;
   background-color: white;
   border-radius: 50%;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 /* Checked state */
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:checked + .slider:before {
@@ -226,4 +230,3 @@ input:checked + .slider:before {
 .hidden {
   display: none;
 }
-
