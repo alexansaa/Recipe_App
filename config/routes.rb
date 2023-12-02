@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
   resources :foods, only: [:new, :create]
   resources :recipes, only: [:index, :show, :destroy, :new, :update, :create] do
-    resources :recipes_food, only: [:destroy, :update, :new, :create]
+    resources :recipe_foods, only: [:destroy, :update, :new, :create]
   end
 
-resources :shopping_list, only: [:index]
+  resources :shopping_list, only: [:index]
 
 
   get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'
