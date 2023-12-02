@@ -40,8 +40,12 @@
             <td><%= recipe_food.quantity %></td>
             <td><%= recipe_food.food.price %></td>
             <td>
-              <%= link_to 'Edit', recipe_recipe_food_path(recipe_food), class: 'edit-link' %>
-              <%= link_to 'Delete', recipe_recipe_food_path(recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-link' %>
+              <% if can? :destroy, recipe_food %>
+                <%= link_to 'Edit', recipe_recipe_food_path(recipe_food), class: 'edit-link' %>
+                <%= link_to 'Delete', recipe_recipe_food_path(recipe_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-link' %>
+              <% end %>
+
+
             </td>
           </tr>
         <% end %>
