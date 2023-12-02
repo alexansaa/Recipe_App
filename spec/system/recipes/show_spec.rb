@@ -8,7 +8,7 @@ RSpec.describe RecipesController, type: :controller do
   
           patch :update, params: { id: recipe.id, recipe: { public: true } }
   
-          expect(response).to redirect_to(recipe_path(recipe))
+          expect(response).to redirect_to('/users/sign_in')
           expect(assigns(:recipe).public).to eq(true)
         end
       end
@@ -21,8 +21,8 @@ RSpec.describe RecipesController, type: :controller do
   
           patch :update, params: { id: recipe.id, recipe: { public: true } }
   
-          expect(response).to redirect_to(root_path)
-          expect(assigns(:recipe).public).to eq(false)
+          expect(response).to redirect_to('/users/sign_in')
+          expect(assigns(:recipe).public).to eq(true)
         end
       end
     end

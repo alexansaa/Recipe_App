@@ -1,4 +1,5 @@
 RSpec.describe "recipes/index.html.erb", type: :view do
+  include Devise::Test::ControllerHelpers 
   before(:each) do
     assign(:recipes, [
       create(:recipe, name: "Recipe 1", description: "Description 1"),

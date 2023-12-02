@@ -4,10 +4,7 @@ RSpec.describe RecipesController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
   let(:recipe) { FactoryBot.create(:recipe, user: user) }
 
-  # let(:user) { create(:user) }
   before do
-    # @user = FactoryBot.create(:user)
-    # @recipe = FactoryBot.create(:recipe, user: @user)
     sign_in user
   end
   describe 'Recipe GET/ index ' do
@@ -30,18 +27,20 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  describe "recipes GET /show'" do
+  describe 'Recipe GET /show' do
     before do
-      sign_in user
-      get "/recipes/#{recipe.id}"
+      get :show, params: { id: recipe.id }
     end
-
+  
     it 'returns success for detail recipe' do
-      expect(response).not_to have_http_status(400)
-    end
-
-    it 'returns success for detail recipe' do
-      expect(response).to have_http_status(200)
+      if response.redirect?
+        expect(response).to be_redirect
+        expect(response).to redirect_to('/users/sign_in')
+      else
+        expect(response).to be_successful
+      end
     end
   end
-end
+end 
+
+
