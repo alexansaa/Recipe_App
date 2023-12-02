@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   root "recipes#index"
   # get "up" => "rails/health#show", as: :rails_health_check
-  resources :inventories, only: [:index, :show, :new, :create] do
+  resources :inventories, only: [:index, :show, :new, :create, :destroy] do
     resources :inventory_foods, only: [:destroy, :new, :create]
   end
 

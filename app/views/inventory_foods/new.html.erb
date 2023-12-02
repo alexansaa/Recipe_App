@@ -1,17 +1,17 @@
-<div>
-  <%= form_with model: [@inventory, @inventory_food], method: :post, local: false, scope: :post do |f| %>
-    <div>
-      <%= f.label :food_id, 'Food:' %>
-      <%= f.collection_select(:food_id, @food, :id, :name, prompt: 'Select Food') %>
+<div class="inventory-form">
+  <%= form_with model: [@inventory, @inventory_food], method: :post, local: false, scope: :post, html: { class: 'food-form' } do |f| %>
+    <div class="form-group">
+      <%= f.label :food_id, 'Food:', class: 'label' %>
+      <%= f.collection_select(:food_id, @food, :id, :name, { prompt: 'Select Food' }, class: 'select-field') %>
     </div>
 
-    <div>
-      <%= f.label :quantity, 'Quantity:' %>
-      <%= f.number_field :quantity %>
+    <div class="form-group">
+      <%= f.label :quantity, 'Quantity:', class: 'label' %>
+      <%= f.number_field :quantity, class: 'quantity-field' %>
     </div>
 
-    <div>
-      <%= f.submit 'Submit' %>
+    <div class="form-group">
+      <%= f.submit 'Submit', class: 'submit-button' %>
     </div>
   <% end %>
 </div>

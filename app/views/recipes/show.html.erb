@@ -1,24 +1,29 @@
 <div class="recipe-details">
   <h1><%= @recipe.name %></h1>
   <div class="first">
-    <div class="recipe">
-      <p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
-      <p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
-      <p>Description: <%= @recipe.description %></p>
-    </div>
-
-    <% if @recipe.owner?(current_user) %>
-      <div class="public-button">
-        <%= form_for @recipe, url: recipe_path(@recipe), method: :patch, html: { class: 'public-form' } do |f| %>
-          <label class="switch">
-            <%= f.check_box :public %>
+    <div class="first-box">
+        <div class="recipe">
+          <p>Preparation Time: <%= @recipe.preparation_time %> minutes</p>
+          <p>Cooking Time: <%= @recipe.cooking_time %> minutes</p>
+          <p>Description: <%= @recipe.description %></p>
+          </div>
+          <% if @recipe.owner?(current_user) %>
+          <div class="public-button">
+            <%= form_for @recipe, url: recipe_path(@recipe), method: :patch, html: { class: 'public-form', id: 'recipe-form' } do |f| %>
+            <label class="switch">
+            <%= f.check_box :public, onchange: "submitForm()" %>
             <span class="slider round"></span>
-          </label>
-          <%= f.submit %>
-        <% end %>
-      </div>
+            </label>
+            <% end %>
+            <script>
+              function submitForm() {
+                document.getElementById('recipe-form').submit();
+              }
+            </script>
+          </div>
+        </div>
 
-      <div class="action-buttons">
+      <div class="action-buttons ingredient-btns">
         <button class='add-ingredient-btn' id="open-modal">Generate shopping list</button>
         <%= button_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), method: :get, class: 'add-ingredient-btn' %>
       </div>
