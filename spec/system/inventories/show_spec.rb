@@ -4,7 +4,7 @@ RSpec.describe 'Inventory details page', type: :system do
   let!(:user) { create(:user) }
   let!(:inventory) { create(:inventory) }
   let!(:food) { create(:food) }
-  let!(:inventory_food) { create(:inventory_food, inventory: inventory, food: food) }
+  let!(:inventory_food) { create(:inventory_food, inventory:, food:) }
 
   before do
     sign_in user # Assuming you have a sign_in helper method

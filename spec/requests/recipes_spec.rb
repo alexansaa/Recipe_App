@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
-  let(:recipe) { FactoryBot.create(:recipe, user: user) }
+  let(:recipe) { FactoryBot.create(:recipe, user:) }
 
   before do
     sign_in user
@@ -23,7 +23,6 @@ RSpec.describe RecipesController, type: :controller do
       else
         expect(response).to be_successful
       end
-      
     end
   end
 
@@ -31,7 +30,7 @@ RSpec.describe RecipesController, type: :controller do
     before do
       get :show, params: { id: recipe.id }
     end
-  
+
     it 'returns success for detail recipe' do
       if response.redirect?
         expect(response).to be_redirect
@@ -41,6 +40,4 @@ RSpec.describe RecipesController, type: :controller do
       end
     end
   end
-end 
-
-
+end

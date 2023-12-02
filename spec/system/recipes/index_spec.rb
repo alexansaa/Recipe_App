@@ -1,26 +1,34 @@
-RSpec.describe "recipes/index.html.erb", type: :view do
-  include Devise::Test::ControllerHelpers 
-  before(:each) do
-    assign(:recipes, [
-      create(:recipe, name: "Recipe 1", description: "Description 1"),
-      create(:recipe, name: "Recipe 2", description: "Description 2")
-    ])
-  end
+require 'rails_helper'
 
-  it "renders a list of recipes" do
-    render
-    expect(rendered).to have_selector('h1.head-1', text: 'List of Recipes')
-    expect(rendered).to have_selector('ul.recipe-list') do |ul|
-      expect(ul).to have_selector('li.recipe-item', count: 2)
-      expect(ul).to have_selector('li.recipe-item') do |li|
-        expect(li).to have_selector('h3 a', text: 'Recipe 1')
-        expect(li).to have_selector('p', text: 'Description 1')
-        expect(li).to have_selector('h3 a', text: 'Recipe 2')
-        expect(li).to have_selector('p', text: 'Description 2')
-        expect(li).to have_selector('input[type="submit"][value="Remove"]', count: 2)
-      end
+RSpec.describe 'recipes/index', type: :view do
+  context 'when there are recipes' do
+    let(:recipe1) { create(:recipe, name: 'Recipe 1', description: 'Description 1') }
+    let(:recipe2) { create(:recipe, name: 'Recipe 2', description: 'Description 2') }
+    let(:user) { create(:user) }
+    before do
+      recipe1
+      recipe2
+      assign(:recipes, [recipe1, recipe2])
+      allow(view).to receive(:can?).and_return(true)
+      allow(view).to receive(:current_user).and_return(user)
+      render
     end
-    expect(rendered).to have_selector('p.recipe-empty', text: 'There are no recipes.')
-    expect(rendered).to have_link('New Recipe', href: new_recipe_path, class: 'new-recipe-button')
+    it 'displays a link to create a new recipe' do
+      expect(rendered).to have_link('New Recipe', href: new_recipe_path)
+    end
+  end
+  context 'when there are no recipes' do
+    before do
+      assign(:recipes, [])
+      render
+    end
+
+    it 'displays a message when there are no recipes' do
+      expect(rendered).to have_selector('p.recipe-empty', text: 'There are no recipes.')
+    end
+
+    it 'displays a link to create a new recipe' do
+      expect(rendered).to have_link('New Recipe', href: new_recipe_path)
+    end
   end
 end

@@ -8,8 +8,6 @@ FactoryBot.define do
       description { 'Your Recipe Description' }
       public { true }
       user
-  
-      # Define any other attributes needed for your Recipe model
     end
   end
   
