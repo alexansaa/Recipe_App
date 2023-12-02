@@ -1,17 +1,17 @@
-<%= form_for([@recipe, @recipe.foods.build]) do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+<%= form_with(model: @recipe_food, local: true) do |f| %> 
+    <%= f.hidden_field :recipe_id %>
+    <%= @recipe %>
+    <div>
+      <%= f.label :food_id, class: "d-block" %>
+      <%= f.collection_select :food_id, Food.all, :id, :name %>
+    </div>
+    
+    <div>
+      <%= f.label :quantity, class: "d-block" %>
+      <%= f.number_field :quantity %>
+    </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <!-- Other fields for the food attributes -->
-
-  <div class="actions">
-    <%= f.submit 'Add Food' %>
-  </div>
+    <div>
+      <%= f.submit %>
+    </div>
 <% end %>

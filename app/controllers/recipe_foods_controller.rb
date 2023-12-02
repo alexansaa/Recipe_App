@@ -1,22 +1,24 @@
-# app/controllers/recipe_foods_controller.rb
 class RecipeFoodsController < ApplicationController
-  before_action :find_recipe
+  def new
+    @recipe_food = RecipeFood.new(recipe_id: params[:recipe_id])
+  end
 
   def create
-    @food = Food.find(params[:food_id])
-    @recipe.foods << @food unless @recipe.foods.include?(@food)
-    redirect_to @recipe, notice: 'Food added to recipe successfully.'
+    @recipe_food = RecipeFood.new(recipe_food_params)
+    if @recipe_food.save
+      redirect_to recipe_path(@recipe_food.recipe_id), notice: 'Recipe Food was successfully created.'
+    else
+      render :new, notice: 'Please try again'
+    end
   end
 
   def destroy
-    @food = Food.find(params[:id])
-    @recipe.foods.delete(@food)
-    redirect_to @recipe, notice: 'Food removed from recipe successfully.'
+    @recipe_food = RecipeFood.find(params[:id])
+    @recipe_food.destroy
+    redirect_to recipe_path(@recipe_food.recipe_id)
   end
 
-  private
-
-  def find_recipe
-    @recipe = Recipe.find(params[:recipe_id])
+  def recipe_food_params
+    params.require(:recipe_food).permit(:quantity, :food_id, :recipe_id)
   end
 end

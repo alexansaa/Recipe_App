@@ -8,12 +8,10 @@ class RecipesController < ApplicationController
   end
 
   def show
-    unless @recipe.public || @recipe.owner?(current_user)
-      redirect_to root_path, alert: 'Recipe is private.'
-      return
-    end
-
-    @new_food = Food.new if @recipe.owner?(current_user)
+    @recipe = Recipe.find(params[:id])
+    @recipe_foods = RecipeFood.includes([:food]).where(recipe: @recipe)
+    @inventories = Inventory.all
+    @foods = Food.all
   end
 
   def new

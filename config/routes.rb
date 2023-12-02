@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :recipe_food, only: [:destroy, :update, :new]
   end
 
+resources :shopping_list, only: [:index]
 
 
   get '/shopping_list', to: 'shopping_list#index', as: 'shopping_list'

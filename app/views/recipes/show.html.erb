@@ -20,7 +20,7 @@
 
 </div>
     <div class="action-buttons">
-      <%= button_to 'Generate Shopping List', shopping_list_path, method: :get, class: 'shopping-list-btn' %>
+     <button class: 'add-ingredient-btn' id="open-modal">Generate shopping list</button>
       <%= button_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), method: :get, class: 'add-ingredient-btn' %>
     </div>
   <% end %>
@@ -48,4 +48,50 @@
       <% end %>
     </tbody>
   </table>
+   <div class="row">
+    <div id="modal" class="modal hidden">
+      <h2 class="center">Generate shopping list</h2>
+      <p class="chooseOne">Choose an inventory to use</p>
+      <div class="selectAndGenerate">
+        <select id="select-inventory">
+          <option value="" disabled>--Select inventory--</option>
+          <% @inventories.each do |inventory| %>
+            <option value= <%= inventory.id %> > <%= inventory.name%> </option>
+          <% end %>
+        </select>
+        <button class="generate">Generate</button>
+      </div>
+      <button type="button" id="close-modal">Close</button>
+    </div>
+   <% if can? :manage, @recipe %>
+      <%= link_to 'Add ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'Addingredient' %>
+    <% end %>
 </div>
+
+<script> 
+  
+var openModalButton = document.getElementById("open-modal");
+var modal = document.getElementById("modal");
+
+  openModalButton.addEventListener("click", function() {
+    modal.classList.remove('hidden')
+    openModalButton.style.display = "none";
+  });
+var closeModalButton = document.getElementById("close-modal");
+
+closeModalButton.addEventListener("click", function() {
+  modal.classList.add('hidden')
+  openModalButton.style.display = "block";
+});
+
+
+  var generate = document.querySelector('.generate')
+  generate.addEventListener('click', () => {
+  var selectedInventory =  document.getElementById('select-inventory')
+  var selectedInventoryId = selectedInventory.value
+  var shoppingListUrl = "<%= shopping_list_index_path(recipe: @recipe) %>";
+  var modifiedUrl = shoppingListUrl + '?inventory=' + selectedInventoryId;
+    window.location.href = modifiedUrl
+  })
+
+</script>
