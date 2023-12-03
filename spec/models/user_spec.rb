@@ -1,13 +1,17 @@
 require 'rails_helper'
 
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+end
+
 RSpec.describe User, type: :model do
   it 'is valid with valid attributes' do
-    user = User.new(name: 'Example User')
+    user = build(:user)
     expect(user).to be_valid
   end
 
   it 'is not valid without a name' do
-    user = User.new(name: nil)
+    user = build(:user, name: nil)
     expect(user).to_not be_valid
   end
 
