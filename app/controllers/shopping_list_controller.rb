@@ -18,7 +18,7 @@ class ShoppingListController < ApplicationController
     end
   end
 
-  def show
+  def default
     @recipes = current_user.recipes
     @recipes_food = []
     @recipes.each do |item|
