@@ -1,15 +1,17 @@
-<%= form_for [@recipe, @recipe_food] do |f| %>
-  <div>
-    <%= f.label :food_id, class: "d-block" %>
-    <%= f.collection_select :food_id, Food.all, :id, :name %>
-  </div>
-  
-  <div>
-    <%= f.label :quantity, class: "d-block" %>
-    <%= f.number_field :quantity %>
-  </div>
+<div class="inventory-form">
+  <%= form_for [@recipe, @recipe_food] do |f| %>
+    <div class="form-group">
+      <%= f.label :food_id, class: "d-block label" %>
+      <%= f.collection_select :food_id, Food.all, :id, :name, class: 'select-field' %>
+    </div>
 
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= f.label :quantity, class: "d-block label" %>
+      <%= f.number_field :quantity, class: 'quantity-field' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit 'Submit', class: 'submit-button' %>
+    </div>
+  <% end %>
+</div>
