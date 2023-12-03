@@ -19,11 +19,19 @@ class ShoppingListController < ApplicationController
   end
 
   def show
-    @recipes = current_user.recipes.includes(:recipe_foods).all
-    @recipes_food = @recipe.recipe_foods.all
-    @inventories = current_user.inventories.includes(:inventory_foods).all
-    @inventories_food = @inventories.inventories.includes(:inventory_foods)
-    @missing_food_items = recipes_food - inventories_food
-    
+    @recipes = current_user.recipes
+    @recipes_food = []
+    @recipes.each do |item|
+      @recipes_food += item.recipe_foods
+    end
+
+    @inventories = current_user.inventories
+    @inventories_food = []
+    @inventories.each do |item|
+      @inventories_food += item.inventory_foods
+    end
+
+    @missing_food_items = @recipes_food - @inventories_food
+
   end
 end
