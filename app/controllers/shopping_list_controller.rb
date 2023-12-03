@@ -12,7 +12,7 @@ class ShoppingListController < ApplicationController
       @missing_food_items = []
 
       recipe_food_items.each do |item|
-        inventory_item = inventory_food_items.find { |inventory_item| inventory_item.food == item.food }
+        inventory_item = inventory_food_items.find { |inv_item| inv_item.food == item.food }
 
         if inventory_item
           if inventory_item.quantity < item.quantity
