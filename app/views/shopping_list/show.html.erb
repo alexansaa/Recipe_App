@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <%= @missing_food_items.each do |item| %>
+            <% @missing_food_items.each do |item| %>
               <tr>
                 <td><%= Food.find(item.food_id).name %></td>
                 <td><%= item.quantity %></td>
