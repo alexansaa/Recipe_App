@@ -2,16 +2,22 @@ class ShoppingListController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recipe = Recipe.find_by_id(params[:recipe_id])
-    @inventory = Inventory.find_by_id(params[:inventory_id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @inventory = Inventory.find(params[:inventory_id])
 
     if @recipe && @inventory
-      recipe_food_items = @recipe.recipe_foods.map(&:food)
-      inventory_food_items = @inventory.inventory_foods.map(&:food)
+      recipe_food_items = @recipe.recipe_foods
+      inventory_food_items = @inventory.inventory_foods
 
       @missing_food_items = recipe_food_items - inventory_food_items
-      @total_food_items = @missing_food_items.sum(&:quantity)
-      @total_price = @missing_food_items.sum { |food| food.price * food.quantity }
+
+      @total_food_items = 0
+      @total_price = 0
+      @missing_food_items.each do |item|
+        @total_food_items += item.quantity
+        @total_price += Food.find(item.food_id).price
+      end
+
     else
       flash[:error] = 'Recipe or inventory not found.'
       redirect_to root_path

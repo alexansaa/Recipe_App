@@ -31,7 +31,7 @@ class InventoriesController < ApplicationController
   private
 
   def set_inventory
-    @inventory = current_user.inventories.find(params[:id])
+    @inventory = Inventory.find(params[:id])
   end
 
   def inventory_params
