@@ -8,31 +8,10 @@ class ShoppingListController < ApplicationController
     if @recipe && @inventory
       recipe_food_items = @recipe.recipe_foods
       inventory_food_items = @inventory.inventory_foods
-
-      @missing_food_items = []
-
-      recipe_food_items.each do |item|
-        inventory_item = inventory_food_items.find { |inventory_item| inventory_item.food == item.food }
-
-        if inventory_item
-          if inventory_item.quantity < item.quantity
-            missing_quantity = item.quantity - inventory_item.quantity
-            missing_item = item.dup
-            missing_item.quantity = missing_quantity
-            @missing_food_items << missing_item
-          end
-        else
-          @missing_food_items << item.dup
-        end
-      end
-
-      @total_food_items = 0
-      @total_price = 0
-      @missing_food_items.each do |item|
-        @total_food_items += item.quantity
-        @total_price += Food.find(item.food_id).price
-      end
-
+      @missing_food_items = missing_food_items(recipe_food_items, inventory_food_items)
+      puts @missing_food_items
+      @total_food_items = total_food_items(@missing_food_items)
+      @total_price = total_price(@missing_food_items)
     else
       flash[:error] = 'Recipe or inventory not found.'
       redirect_to root_path
@@ -53,6 +32,41 @@ class ShoppingListController < ApplicationController
     end
 
     @missing_food_items = @recipes_food - @inventories_food
+  end
 
+  private
+
+  def total_food_items(missing_food_items)
+    @total_food_items = 0
+    missing_food_items.each do |item|
+      @total_food_items += item.quantity
+    end
+    @total_food_items
+  end
+
+  def total_price(missing_food_items)
+    @total_price = 0
+    missing_food_items.each do |item|
+      @total_price += Food.find(item.food_id).price
+    end
+    @total_price
+  end
+
+  def missing_food_items(recipe_food_items, inventory_food_items)
+    @my_items = []
+    recipe_food_items.each do |item|
+      inventory_item = inventory_food_items.find { |inv_item| inv_item.food == item.food }
+      if inventory_item
+        if inventory_item.quantity < item.quantity
+          missing_quantity = item.quantity - inventory_item.quantity
+          missing_item = item.dup
+          missing_item.quantity = missing_quantity
+          @my_items << missing_item
+        end
+      else
+        @my_items << item.dup
+      end
+    end
+    @my_items
   end
 end
