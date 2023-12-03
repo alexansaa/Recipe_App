@@ -17,4 +17,13 @@ class ShoppingListController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def show
+    @recipes = current_user.recipes.includes(:recipe_foods).all
+    @recipes_food = @recipe.recipe_foods.all
+    @inventories = current_user.inventories.includes(:inventory_foods).all
+    @inventories_food = @inventories.inventories.includes(:inventory_foods)
+    @missing_food_items = recipes_food - inventories_food
+    
+  end
 end

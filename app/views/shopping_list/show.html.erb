@@ -1,0 +1,38 @@
+<head>
+  <%= stylesheet_link_tag "shopping_list" %>
+</head>
+<body>
+  <div class="mrgn">
+    <h1>
+      Full Shopping List
+    </h1>
+    <div class="shopping_list_data">
+      <div>
+        <p>Amount of food to buy: <%= @missing_food_items.map { |item| item.quantity }.sum %></p>
+        <p>Total value of food needed: $<%= @missing_food_items.map { |item| item.quantity * item.food.price }.sum %></p>
+      </div>
+    </div>
+    <div>
+      <% if @missing_food_items.present? %>
+        <table>
+          <thead>
+            <tr>
+              <th>Food</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= @missing_food_items.each do |item| %>
+              <tr>
+                <td><%= item.name %></td>
+                <td><%= item.quantity %></td>
+                <td><%= item.price %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</body>
