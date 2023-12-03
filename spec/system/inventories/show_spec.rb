@@ -13,14 +13,6 @@ RSpec.describe 'Inventory details page', type: :system do
 
   # it 'displays inventory details and associated foods' do
   #   expect(page).to have_content(inventory.name)
-
-  #   within '.items_table' do
-  #     expect(page).to have_content(food.name)
-  #     expect(page).to have_content(inventory_food.quantity)
-  #     expect(page).to have_link('Remove', href: inventory_inventory_food_path(inventory, inventory_food), visible: :all)
-  #   end
-  # end
-
   # it 'allows navigating back to inventories' do
   #   click_link 'Back to Inventories'
 
