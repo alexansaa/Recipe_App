@@ -75,3 +75,5 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'devise'
 
 gem 'cancancan'
+
+gem 'pg', '~> 1.5', '>= 1.5.4'
