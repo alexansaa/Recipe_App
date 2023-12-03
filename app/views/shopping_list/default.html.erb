@@ -1,15 +1,15 @@
 <head>
-  <%= stylesheet_link_tag "shopping_list" %>
+  <%= stylesheet_link_tag "shopping_list_show" %>
 </head>
 <body>
-  <div class="mrgn">
+  <div class="mrgns">
     <h1>
       Full Shopping List
     </h1>
     <div class="shopping_list_data">
       <div>
-        <p>Amount of food to buy: <%= @missing_food_items.map { |item| item.quantity }.sum %></p>
-        <p>Total value of food needed: $<%= @missing_food_items.map { |item| item.quantity * item.food.price }.sum %></p>
+        <p class="info">Amount of food to buy: <%= @missing_food_items.map { |item| item.quantity }.sum %></p>
+        <p class="info">Total value of food needed: $<%= @missing_food_items.map { |item| item.quantity * item.food.price }.sum %></p>
       </div>
     </div>
     <div>
