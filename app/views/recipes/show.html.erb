@@ -14,8 +14,12 @@
       <%= f.check_box :public %>
       <span class="slider round"></span>
     </label>
-    <%= f.submit %>
   <% end %>
+  <script>
+    function submitForm() {
+      document.getElementById('recipe-form').submit();
+    }
+  </script>
    <div class="field">
     <%= form.check_box :public, class: 'form-check-input' %>
     <%= form.label :public, class: 'form-check-label' %>
