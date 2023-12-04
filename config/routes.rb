@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   
   root "recipes#index"
-  # get "/health", to: "rails/health#show", as: :rails_health_check
+  get "/health", to: "rails/health#show", as: :rails_health_check
   # get "up" => "rails/health#show", as: :rails_health_check
   resources :inventories, only: [:index, :show, :new, :create, :destroy] do
     resources :inventory_foods, only: [:destroy, :new, :create]
