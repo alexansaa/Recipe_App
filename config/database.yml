@@ -98,6 +98,9 @@ test:
 #
 production:
   <<: *default
-  database: recipe_app_production_11ig
-  username: recipe_app
-  password: <%= ENV["RECIPE_APP_DATABASE_PASSWORD"] %>
+  database: "recipe_app_production_11ig"
+  username: "recipe_app"
+  password: "igNY0qHcl4na4Xxlv9o3J3hPg9mpyOvp"
+  host: dpg-clmfumcjtl8s73ajiac0-a
+  port: 5432
+  pool: 5
