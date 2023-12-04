@@ -1,0 +1,48 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 0 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Align logo vertically */
+}
+
+.links {
+  display: flex;
+  align-items: center; /* Align links vertically */
+}
+
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.logout {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin-left: 1rem;
+}
+
+.logo-img {
+  max-width: 100px;
+  margin-right: 2rem;
+}
+
+.logo-img:hover {
+  opacity: 0.8; /* Change opacity on hover */
+}
+
+.navbar-link:hover {
+  color: #ff6347;
+}
+
+.logout:hover {
+  background-color: #e04f38; /* Change button color on hover */
+}

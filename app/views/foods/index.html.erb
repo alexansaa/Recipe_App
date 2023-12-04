@@ -1,0 +1,12 @@
+<div>
+  <div>
+    <%= link_to 'Create Food', new_food_path%>
+  </div>
+  <div>
+    <% @foods.each do |item| %>
+      <h3><%= item.name %></h3>
+      <p><%= item.price %></p>
+      <p><%= item.measurement_unit %></p>
+    <% end %>
+  </div>
+</div>

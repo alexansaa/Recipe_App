@@ -1,0 +1,83 @@
+.mrgn {
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+.inventory_info {
+  border-bottom: 3px solid black;
+  padding-bottom: 25px;
+}
+
+.inventory_info h1 {
+  text-align: center;
+}
+
+.btn_element {
+  text-align: end;
+}
+
+.btn {
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 15px 10px 15px;
+}
+
+.items_table {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.items_table th,
+.items_table td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.items_table th {
+  background-color: gray;
+}
+
+.items_table .odd {
+  background-color: white;
+}
+
+.items_table .even {
+  background-color: #f2f2f2; /* Light gray background for even rows */
+}
+
+/* Add this CSS to your stylesheet */
+.inventory-form {
+  max-width: 400px; /* Adjust as needed */
+  margin: 0 auto; /* Center the form */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.select-field,
+.quantity-field {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}

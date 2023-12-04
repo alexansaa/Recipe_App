@@ -1,0 +1,15 @@
+<head>
+  <%= stylesheet_link_tag "public_recipes" %>
+</head>
+<body>
+  <div>
+    <h1>
+      Public recipes
+    </h1>
+    <div>
+      <% @public_recipes.each do |recipe| %>
+        <%= render partial: 'recipes/recipe', locals: { recipe: recipe } %>
+      <% end %>
+    </div>
+  </div>
+</body>

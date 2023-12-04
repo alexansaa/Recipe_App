@@ -1,0 +1,34 @@
+<head>
+  <%= stylesheet_link_tag "inventory_details" %>
+</head>
+<body>
+  <div class="inventory_info mrgn container">
+    <h1>
+      <%= @inventory.name %>
+      <%= link_to 'Back to Inventories', inventories_path %>
+    </h1>
+    <div class="btn_element">
+      <%= link_to 'Add food', new_inventory_inventory_food_path(inventory_id: @inventory.id), class: 'btn' %>
+    </div>
+  </div>
+  <div class="mrgn">
+    <table class="items_table">
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Quantity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @inventory.inventory_foods.each_with_index do |item, index| %>
+          <tr class="<%= index.even? ? 'even' : 'odd' %>">
+            <td><%= Food.find(item.food_id).name %></td>
+            <td><%= item.quantity %></td>
+            <td><%= link_to 'Remove', inventory_inventory_food_path(inventory_id: @inventory.id, id: item.id), method: :delete, remote: true %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>
