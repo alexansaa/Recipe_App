@@ -1,6 +1,6 @@
 databases:
   - name: recipe_app
-    databaseName: recipe_app_production_11ig
+    databaseName: recipe_app_production_11ig_6ur9
     user: recipe_app
     plan: free
 
@@ -17,7 +17,5 @@ services:
         fromDatabase:
           name: recipe_app
           property: connectionString
-      - key: RAILS_MASTER_KEY
-        sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
