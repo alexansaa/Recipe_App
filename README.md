@@ -132,8 +132,8 @@ Example:
 
 👤 **Alexander**
 
-- [GitHub](https://github.com/alexansaa)
-- [LinkedIn](https://www.linkedin.com/in/alexander-saavedra-2803b1b6/)
+- GitHub: [GitHub](https://github.com/alexansaa)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/alexander-saavedra-2803b1b6/)
 
 👤 **EL MEHDI AHMIDOU**
 
