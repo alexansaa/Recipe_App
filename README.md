@@ -12,7 +12,7 @@
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
+  - [Deployment](#deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -107,16 +107,8 @@ To run tests, run the following command:
 
 ### Deployment
 
-You can deploy this project using:
-Coming Soon
-
-<!--
-Example:
-
-```sh
-
-```
- -->
+You can take a peak at the <a href="https://recipe-app-uxda.onrender.com/">Live Demo!</a>
+This deployment uses a Render PostgreSql Database instance, but it's only available occasionally. Please, be patient about it.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -148,7 +140,7 @@ Example:
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [ ] **[Models]**
-- [ ] **[Authentication with Devise]**
+- [ ] **[Email verification]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
